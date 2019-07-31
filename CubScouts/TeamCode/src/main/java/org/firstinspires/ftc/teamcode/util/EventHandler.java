@@ -1,6 +1,7 @@
-package org.firstinspires.ftc.teamcode.DWAIEventBasedTeleOp;
+package org.firstinspires.ftc.teamcode.util;
 
 import com.qualcomm.robotcore.eventloop.opmode.*;
+import com.qualcomm.robotcore.hardware.*;
 
 public class EventHandler extends LinearOpMode {
     /*Override methods accordingly to assign buttons
@@ -34,13 +35,13 @@ public class EventHandler extends LinearOpMode {
                     telemetry.clear();
                     defaultState();
 
-                    if (!gamepad1.atRest()) {
+                    if (!gamepad1.atRest() | !noButtons(gamepad1)) {
                         gamepadEventDetector1();
                     } else {
                         gamepad1Default();
                     }
 
-                    if (!gamepad2.atRest()) {
+                    if (!gamepad2.atRest() | !noButtons(gamepad2)) {
                         gamepadEventDetector2();
                     } else {
                         gamepad2Default();
@@ -231,50 +232,65 @@ public class EventHandler extends LinearOpMode {
 
     private void gamepadEventDetector1(){
 
+        if(gamepad1.a){
             onA1();
+        }
 
-
+        if(gamepad1.b){
             onB1();
+        }
 
-
+        if(gamepad1.back){
             onBack1();
+        }
 
-
+        if(gamepad1.dpad_down){
             onDpadDown1();
+        }
 
-
+        if(gamepad1.dpad_left){
             onDpadLeft1();
+        }
 
-
+        if(gamepad1.dpad_right){
             onDpadRight1();
+        }
 
-
+        if(gamepad1.dpad_up){
             onDpadUp1();
+        }
 
-
+        if(gamepad1.guide){
             onGuide1();
+        }
 
-
+        if(gamepad1.left_bumper){
             onLeftBumper1();
+        }
 
-
+        if(gamepad1.left_stick_button){
             onLeftStickButton1();
+        }
 
-
+        if(gamepad1.right_bumper){
             onRightBumper1();
+        }
 
-
+        if(gamepad1.right_stick_button){
             onRightStickButton1();
+        }
 
-
+        if(gamepad1.start){
             onStart1();
+        }
 
-
+        if(gamepad1.x){
             onX1();
+        }
 
-
+        if(gamepad1.y) {
             onY1();
-
+        }
 
         onRightJoystick1();
         onLeftJoystick1();
@@ -348,5 +364,18 @@ public class EventHandler extends LinearOpMode {
         onLeftJoystick2();
         onRightTrigger2();
         onLeftTrigger2();
+    }
+
+    public Boolean noButtons(Gamepad gamepad){
+
+        if(gamepad.a | gamepad.b | gamepad.back |
+            gamepad.dpad_up | gamepad.dpad_right | gamepad.dpad_left | gamepad.dpad_down |
+            gamepad.guide | gamepad.left_bumper | gamepad.left_stick_button |
+            gamepad.right_bumper | gamepad.right_stick_button | gamepad.start | gamepad.x | gamepad.y){
+            return false;
+        } else{
+            return true;
+        }
+
     }
 }

@@ -14,7 +14,7 @@ public class PropertiesLoader
     public PropertiesLoader(String fileName)
     {
         File sdcard = Environment.getExternalStorageDirectory();
-        File config = new File(sdcard, "DWAIConfig/" + fileName + ".properties");
+        File config = new File(sdcard, "Config/" + fileName + ".properties");
         properties = new Properties();
         try
         {
